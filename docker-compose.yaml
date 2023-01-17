@@ -1,9 +1,11 @@
 version: '3'
 services:
   nginx:
+    container_name: yourwish-nginx
     build: ./
     volumes:
     - ./templates:/etc/nginx/templates
+    - ./logs:/var/log/nginx/logs
     ports:
     - "8080:8000"
     environment:
