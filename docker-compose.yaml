@@ -10,5 +10,5 @@ services:
     ports:
     - "8080:80"
     environment:
-    - NGINX_HOST=yourwish.kr
+    - NGINX_HOST=yourwish.gifts
     - NGINX_PORT=80
