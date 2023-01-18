@@ -6,8 +6,9 @@ services:
     volumes:
     - ./templates:/etc/nginx/templates
     - ./logs:/var/log/nginx/logs
+    - ./init.sh:/init.sh
     ports:
-    - "8080:8000"
+    - "8080:80"
     environment:
     - NGINX_HOST=yourwish.kr
-    - NGINX_PORT=8000
+    - NGINX_PORT=80
