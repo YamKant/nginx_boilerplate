@@ -1,10 +1,8 @@
 FROM nginx:1.21.6
 
-RUN apt-get update \
-    && apt-get install -y openssl \
-	&& apt-get install -y certbot \
-	&& apt-get install -y python3-certbot-nginx
+RUN apt-get update
+RUN apt-get install -y openssl
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./code/nginx.conf /etc/nginx/nginx.conf
 
 CMD ["/bin/bash", "init.sh"]

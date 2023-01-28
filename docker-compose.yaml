@@ -4,11 +4,12 @@ services:
     container_name: yourwish-nginx
     build: ./
     volumes:
-    - ./templates:/etc/nginx/templates
-    - ./logs:/var/log/nginx/logs
-    - ./init.sh:/init.sh
+    - ./code/templates:/etc/nginx/templates
+    - ./code/logs:/var/log/nginx/logs
+    - ./code/init.sh:/init.sh
     ports:
-    - "8080:80"
+    - "80:80"
+    - "443:443"
     environment:
-    - NGINX_HOST=yourwish.gifts
+    - NGINX_HOST=localhost
     - NGINX_PORT=80
