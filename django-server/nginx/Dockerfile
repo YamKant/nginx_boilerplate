@@ -5,4 +5,4 @@ RUN apt-get install -y openssl
 
 COPY ./code/nginx.conf /etc/nginx/nginx.conf
 
-CMD ["/bin/bash", "/docker_run.sh"]
+# CMD ["/bin/bash", "/run.sh"]

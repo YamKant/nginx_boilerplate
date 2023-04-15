@@ -1,0 +1,62 @@
+{% extends "tools/base.html" %}
+{% block contents %}
+<div class="flex flex-col space-y-2">
+  <div class="flex flex-col">
+    <div class="text-base">Open Graph 예제</div>
+    {% csrf_token %}
+    <div class="flex">
+      <input
+        id="og-url-input"
+        type="text"
+        class="border border-gray-300"
+        placeholder="link를 입력하세요."
+      >
+      <button class="border border-gray-300" onclick="onClick()">변환</button>
+    </div>
+  </div>
+  <div class="flex flex-col">
+    <div>Open Graph 결과</div>
+    <div id="og-card" class="flex border border-gray-300 h-[100px] w-[400px] p-2">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  const genOpenGraphCard = (ogData) => {
+    const htmlStr = `
+      <div onclick='location.href="${ogData.og_url}"' class="flex cursor-pointer">
+        <div class="flex flex-col justify-center">
+          <img class="bg-violet-200 h-[50px] w-[50px]" src=${ogData.og_image}>
+        </div>
+        <div class="flex flex-col p-2 justify-center">
+          <div>${ogData.og_title}</div>
+          <div>${ogData.og_description}</div>
+        </div>
+      </div>
+    `
+    document.getElementById('og-card').insertAdjacentHTML('beforeend', htmlStr)
+
+  }
+
+  const onClick = async () => {
+    const endPoint = 'http://127.0.0.1:8000/tools/api/open_graph/'
+    const data = {
+      'url': document.getElementById('og-url-input').value
+    }
+    const ogData = await axios({
+      method: 'post',
+      url: endPoint,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'X-CSRFToken': '{{csrf_token}}',
+      },
+      data: data
+    });
+    genOpenGraphCard(ogData.data);
+  }
+</script>
+{% endblock %}
