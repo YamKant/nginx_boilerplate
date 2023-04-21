@@ -16,6 +16,7 @@ services:
       - NGINX_PORT=80
     depends_on:
       - db
+      - server
   db:
     container_name: my-db
     image: postgres
@@ -31,14 +32,9 @@ services:
     command: python manage.py runserver 0.0.0.0:8000 --insecure
     volumes:
       - ./django/code:/code
-    ports:
-      - "8088:8088"
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_HOST=db
+    expose:
+      - "8000"
     env_file:
-      - ./django/code/.env
+      - ./django/.env
     depends_on:
       - db

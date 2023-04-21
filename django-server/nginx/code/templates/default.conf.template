@@ -12,8 +12,8 @@ server {
     }
 
     location / {
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
+        return 308 https://$host$request_uri;
+        #proxy_pass http://server:8000;
     }
 
     #error_page  404              /404.html;
@@ -55,6 +55,6 @@ server {
     ssl_certificate /etc/letsencrypt/live/${NGINX_HOST}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${NGINX_HOST}/privkey.pem;        
     location / {
-        proxy_pass http://${NGINX_HOST};
+        proxy_pass http://server:8000;
     }
 }

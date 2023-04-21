@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # custom app
+    'api',
     'users',
     'tools',
 ]
