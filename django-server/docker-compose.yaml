@@ -29,7 +29,7 @@ services:
   server:
     container_name: my-server
     build: ./django
-    command: python manage.py runserver 0.0.0.0:8000 --insecure
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./django/code:/code
     expose:
