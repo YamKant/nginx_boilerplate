@@ -30,30 +30,30 @@ services:
 
   server1:
     container_name: my-server1
-    build: ./django
+    build: ./app1
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./django/code:/code
+      - ./app1/code:/code
     expose:
       - "8000"
     env_file:
-      - ./django/.env
+      - ./app1/.env
     environment:
-      - 'PROFILE=set1'
+      - PROFILE=set1
     depends_on:
       - db
 
   server2:
     container_name: my-server2
-    build: ./django
+    build: ./app2
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./django/code:/code
+      - ./app2/code:/code
     expose:
       - "8000"
     env_file:
-      - ./django/.env
+      - ./app2/.env
     environment:
-      - 'PROFILE=set2'
+      - PROFILE=set2
     depends_on:
       - db
