@@ -16,7 +16,8 @@ services:
       - NGINX_PORT=80
     depends_on:
       - db
-      - server
+      - server1
+      - server2
   db:
     container_name: my-db
     image: postgres
@@ -26,8 +27,9 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-  server:
-    container_name: my-server
+
+  server1:
+    container_name: my-server1
     build: ./django
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -36,5 +38,22 @@ services:
       - "8000"
     env_file:
       - ./django/.env
+    environment:
+      - 'PROFILE=set1'
+    depends_on:
+      - db
+
+  server2:
+    container_name: my-server2
+    build: ./django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./django/code:/code
+    expose:
+      - "8000"
+    env_file:
+      - ./django/.env
+    environment:
+      - 'PROFILE=set2'
     depends_on:
       - db
