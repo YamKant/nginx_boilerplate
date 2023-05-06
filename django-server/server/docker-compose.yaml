@@ -1,0 +1,39 @@
+version: '3'
+services:
+  server1:
+    container_name: my-server1
+    build: ./django_server
+    networks:
+      - my-network
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./django_server/code:/code
+    expose:
+      - "8000"
+    env_file:
+      - ./django_server/.env
+    environment:
+      - PROFILE=set1-server1
+  server2:
+    container_name: my-server2
+    build: ./django_server
+    networks:
+      - my-network
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./django_server/code:/code
+    expose:
+      - "8000"
+    env_file:
+      - ./django_server/.env
+    environment:
+      - PROFILE=set1-server2
+  # monitor:
+  #   build: ./monitor_server
+  #   command: tail -f /dev/null
+  #   container_name: my-monitor
+
+networks:
+  my-network:
+    name: my-network
+    external: true

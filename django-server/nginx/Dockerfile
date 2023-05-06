@@ -8,5 +8,6 @@ COPY ./code/run.sh /run.sh
 COPY ./code/templates /etc/nginx/templates
 
 ENV NGINX_HOST localhost
+ENV INITIAL_START 1
 
 CMD ["/bin/bash", "/run.sh"]
