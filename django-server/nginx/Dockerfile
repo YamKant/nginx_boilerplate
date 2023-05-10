@@ -5,6 +5,7 @@ RUN apt-get install -y openssl
 
 COPY ./code/nginx.conf /etc/nginx/nginx.conf
 COPY ./code/run.sh /run.sh
+COPY ./code/set_nginx_conf.sh /set_nginx_conf.sh
 COPY ./code/templates /etc/nginx/templates
 
 ENV NGINX_HOST localhost
