@@ -4,5 +4,11 @@ RUN apt-get update
 RUN apt-get install -y openssl
 
 COPY ./code/nginx.conf /etc/nginx/nginx.conf
+COPY ./code/run.sh /run.sh
+COPY ./code/set_nginx_conf.sh /set_nginx_conf.sh
+COPY ./code/templates /etc/nginx/templates
 
-# CMD ["/bin/bash", "/run.sh"]
+ENV NGINX_HOST localhost
+ENV INITIAL_START 1
+
+CMD ["/bin/bash", "/run.sh"]
