@@ -1,9 +1,13 @@
 #!/bin/bash
 
-sed -i 's|#// ||g' /etc/nginx/conf.d/default.conf
-sed -i 's|server1|172.20.0.3|g' /etc/nginx/conf.d/default.conf
-sed -i 's|server2|172.20.0.4|g' /etc/nginx/conf.d/default.conf
+SRC_SERVER1=$1
+SRC_SERVER2=$2
+TAR_SERVER1=$3
+TAR_SERVER2=$4
 
-# nginx reload in docker
-nginx -s reload
+# Firstly, remove the comment keywords
+sed -i 's|#// ||g' /etc/nginx/conf.d/default.conf
+# Secondly, set nginx upstream hostname
+sed -i "s|${SRC_SERVER1}|${TAR_SERVER1}|g" /etc/nginx/conf.d/default.conf
+sed -i "s|${SRC_SERVER2}|${TAR_SERVER2}|g" /etc/nginx/conf.d/default.conf
 
