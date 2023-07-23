@@ -1,8 +1,9 @@
-# Nginx Boilerplate
-- Nginx 컨테이너를 작성해나가고 학습하는 과정을 기록합니다.
-- Docker를 기본적으로 사용하며, docker-compose 내부에서 nginx, django, db 등의 앱을 사용하기 위한 설정을 작성해 나갑니다.
+# Nginx를 이용한 무중단 배포
+- Django server를 무중단 배포하기 위한 Nginx와 Docker container를 세팅합니다.
+- [구체적인 설명 참고](https://yamkant.github.io/server/server-1/)
 
-
-### 학습자료
-- sub domain 설정: [링크 바로가기](docs/sub_domain.md)
-- nginx container에서 사용할 docker volume 설정: [링크 바로가기](docs/volume.md)
+### 최종 목표
+- nginx 단독 컨테이너 구성
+- docker-compose를 사용한 django server 여러대 구성
+- nginx load balancing을 활용한 django server 구동
+- Blue-Green 배포 형식으로 nginx 및 docker-compose 세팅
